@@ -250,7 +250,7 @@ generate_squashfs() {
     fi
     mkdir -p "$BUILDDIR/tmp/LiveOS"
     dd if=/dev/zero of="$BUILDDIR/tmp/LiveOS/ext3fs.img" \
-        bs="$((ROOTFS_SIZE+ROOTFS_FREESIZE))M" count=1 >/dev/null 2>&1
+        bs=1M count="$((ROOTFS_SIZE+ROOTFS_FREESIZE))" >/dev/null 2>&1
     mkdir -p "$BUILDDIR/tmp-rootfs"
     mkfs.ext3 -F -m1 "$BUILDDIR/tmp/LiveOS/ext3fs.img" >/dev/null 2>&1
     mount -o loop "$BUILDDIR/tmp/LiveOS/ext3fs.img" "$BUILDDIR/tmp-rootfs"
